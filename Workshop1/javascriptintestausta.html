@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <!-- meta tag is used to define the character set, viewport, http-equiv etc. -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- title tag is used to define the title of the page -->
+    <title>Workshop 01 excercises</title>
+    <!-- link tag is used to link to external CSS files -->
+    <link rel="stylesheet" href="./css/Workshop1_example1.css">
+
+
+    <!-- script tag is where Javascript goes to -->
+    <script>
+        for (var i = 0; i < 400; i++) {
+            console.log("This round is " + i);
+        }
+        window.alert("Tämä on alert-viesti!");
+        document.write("Testataan tuleeko tulostus HTML-sivulle");
+
+        var x = 50; 
+        var order = 'Beer'; 
+
+        var message = ""; 
+
+        if (x > 70) {
+            message = "Hän on yli 70!";
+        } else if (x > 50) {
+            message = "Hän on yli 50!";
+        } else if (x > 40) {
+            message = "Middle aged man, who ordered some " + order;
+        } else if (x > 20) {
+            message = "He's in his twenties.";
+        } else {
+            message = "It seems you're a bit underaged.";
+        }
+
+        
+        document.write("<p><strong>" + message + "</strong></p>");
+  
+
+    </script>
+
+</head>
+
+<body>
+    <h1>Ihmisen ikä koiran ikänä</h1>
+    <script>
+    function koiraniaksi(ihmisenika) {
+    var koiranika = ihmisenika * 7;
+    return koiranika;}
+
+    document.write("Koiran ikä, kun ihmisen ikä on 5: " + koiraniaksi(5) + "<br>");
+    document.write("Koiran ikä, kun ihmisen ikä on 10: " + koiraniaksi(10) + "<br>");
+    </script>
+   
+   <h1>Testataan funktiota</h1>
+    <script>
+
+   function addNumbers(a, b) {
+    return a + b;}
+
+    var num1 = 60;
+    var num2 = 50;
+    var sum = addNumbers(num1, num2);
+
+    if (sum > 100) {
+      alert("Summa on yli 100!");}
+
+
+    document.write("<p>Ensimmäinen numero: " + num1 + "</p>");
+    document.write("<p>Toinen numero: " + num2 + "</p>");
+    document.write("<p>Summa: " + sum + "</p>");
+    </script>
+   
+</body>
+
+</html>
