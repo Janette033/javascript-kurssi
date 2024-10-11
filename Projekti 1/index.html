@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Projekti 1</title>
+</head>
+<body>
+    <header>  
+        <h1>To Do List</h1>
+        <img src="https://cdn.icon-icons.com/icons2/1893/PNG/512/clipboard_120835.png" alt="Kuva" id="header-image">
+    </header>
+    <form action=""> 
+        <input id="inputField" type="text" placeholder="Lisää tehtävä.."> <!-- teksti kenttä, johon käyttäjä voi nimetä tehtävän-->
+        <button id="addToDo" type="submit">+</button> <!-- Tällä lisätään tehtävän listaan -->
+        <div class="select"> <!-- Valikko, josta voi nähdä suoritetut ja keskeneräiset tehtävät -->
+            <select name="tasks" class="filter-tasks">
+                <option value="valitse">Valitse</option>
+                <option value="suoritettu">Suoritettu</option>
+                <option value="kesken">Kesken</option>
+            </select>
+        </div>
+    </form>
+
+    <div class="todo-container"> <!-- Tehtävälista, johon lisätään/poistetaan tehtäviä -->
+        <ul id="todo-list"></ul>
+    </div>
+    <script src="main.js"></script> 
+</body>
+</html>

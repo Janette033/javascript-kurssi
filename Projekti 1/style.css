@@ -1,0 +1,140 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(234, 167, 167);
+    color: rgb(255, 255, 255);
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+header  {
+    font-size: 2rem;
+}
+
+header,
+form {
+    min-height: 20vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+form input,
+form button {
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 1.8rem;
+    border: none;
+}
+
+
+form button {
+    color: rgb(255, 255, 255);
+    background-color: rgb(225, 75, 132);
+    cursor: pointer;
+    transition: background-color 0.4s ease-in;
+    margin-left: 1rem;
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;  /* Keskittää vaakasuunnassa */
+    align-items: center;      /* Keskittää pystysuunnassa */
+
+    /* Fontin koko + merkille */
+    font-size: 1.8rem;
+}
+
+form button:hover{
+    color: rgb(0, 0, 0);
+}
+
+.select {
+    display: inline-block;
+    width: 200px;
+    padding: 1.5rem;
+}
+
+.filter-tasks {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid rgb(223, 9, 116);;
+    border-radius: 1rem;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+
+.filter-tasks:focus {
+    outline: none;
+    border-color: rgb(223, 9, 116);
+}
+
+
+.todo-container {
+    margin: 10px auto;
+    width: 80%; 
+    max-width: 450px;
+    border-radius: 1rem;
+    padding: 10px; 
+}
+
+
+#todo-list {
+    list-style-type: none; 
+    padding: 0; 
+    width: 100%; 
+}
+#todo-list li {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    background-color: rgb(255, 255, 255); 
+    color: black;
+    padding: 10px; 
+    border-radius: 5px; 
+    margin-bottom: 10px; 
+    transition: background-color 0.3s; 
+}
+
+#todo-list li:hover {
+    background-color: #e0f7fa; 
+    color: black;
+    cursor: pointer; 
+}
+
+.deleteTask {
+    background-color: rgb(225, 75, 132);
+    color: rgb(12, 7, 7);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer; 
+}
+
+.alert {
+    border: 2px solid red; 
+}
+
+.task-checkbox {
+    margin-right: 10px; 
+}
+
+.completed {
+    text-decoration: line-through; 
+    color: rgb(196, 51, 111); 
+}
+
+#header-image {
+    width: 40px;
+    margin-left: 15px;
+}
+
+
