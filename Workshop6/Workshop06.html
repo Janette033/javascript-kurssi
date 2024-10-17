@@ -1,0 +1,187 @@
+<!doctype html>
+<HTML lang="en">
+	<head>
+		<title>Workshop 6</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/styles.css">
+	</head>
+	<body class="ws6" onload="naytaSessionData(); naytaSessionDataSessionStorage();">
+		<h1>Workshop 6: Using Localstorage and Sessionstorage</h1>
+		<hr />
+		
+		<h2>Exercise 1: Saving the entered data</h2>
+		<p>Use localstorage to save the data entered to the form fields below.</p>
+		<div>
+			<label for="destination">Destination:</label>
+			<input type="text" name="textfield" id="destination">
+		</div>
+		<div>
+			<label for="arrival">Arrival Date:</label>
+			<input type="text" name="textfield" id="arrival">
+		</div>
+		<div id="services" class="border">
+			<p>Services:</p>
+			<div><label><input type="checkbox" name="CheckboxGroup1" value="Internet" id="CheckboxGroup1_0">Internet</label></div>
+			<div><label><input type="checkbox" name="CheckboxGroup1" value="AC" id="CheckboxGroup1_1">Air Conditioning</label></div>
+			<div><label><input type="checkbox" name="CheckboxGroup1" value="minibar" id="CheckboxGroup1_2">Minibar</label></div>
+			<div><label><input type="checkbox" name="CheckboxGroup1" value="car" id="CheckboxGroup1_3">Car rent</label></div>
+			<div><label><input type="checkbox" name="CheckboxGroup1" value="sauna" id="CheckboxGroup1_4">Sauna</label></div>
+		</div>	
+		<div class="clear">
+			<p>
+			  <input type="button" name="button" id="button" value="Reserve" onclick="haetaanData()">
+			</p>
+		</div>
+		<hr/>
+		<div>
+			<h2>Exercise 2: Reloading the saved data</h2>
+			<p>After you have managed to save some data to a localstorage, its time to utilize it. Add a 
+			piece of code to this page, which will check if there is saved data available from the first 
+			assignment, and load them into a div with an id="sessionData". This should happen when the 
+			page is loaded, because we want the data to be loaded then as well. HINT: use onLoad -
+			event on the body tag.</p>
+			<div id="sessiondata">Session data goes here!</div>
+		</div>
+		<hr/>
+
+		<!-- Uusi lomake tehtävää 3 varten -->
+		<div>
+			<h2>Exercise 3: Sessionstorage vs. localstorage</h2>
+			<p>Compare sessionstorage and localstorage. Think of a few examples on where each 
+			should be used. Copy the form above here and implement sessionstorage for it. See what 
+			happens, when you close the browser. You can utilize developer tools to study the data (F12, 
+			select Application tab, then LocalStorage on the left).</p>
+		</div>
+		<div>
+			<label for="session-destination">Destination:</label>
+			<input type="text" name="textfield" id="session-destination">
+		</div>
+		<div>
+			<label for="session-arrival">Arrival Date:</label>
+			<input type="text" name="textfield" id="session-arrival">
+		</div>
+		<div id="session-services" class="border">
+			<p>Services:</p>
+			<div><label><input type="checkbox" name="CheckboxGroup1" value="Internet" id="session-CheckboxGroup1_0">Internet</label></div>
+			<div><label><input type="checkbox" name="CheckboxGroup1" value="AC" id="session-CheckboxGroup1_1">Air Conditioning</label></div>
+			<div><label><input type="checkbox" name="CheckboxGroup1" value="minibar" id="session-CheckboxGroup1_2">Minibar</label></div>
+			<div><label><input type="checkbox" name="CheckboxGroup1" value="car" id="session-CheckboxGroup1_3">Car rent</label></div>
+			<div><label><input type="checkbox" name="CheckboxGroup1" value="sauna" id="session-CheckboxGroup1_4">Sauna</label></div>
+		</div>	
+		<div class="clear">
+			<p>
+			  <input type="button" name="button" id="session-button" value="Reserve" onclick="haetaanDataSessionStorage()">
+			</p>
+		</div>
+		<hr/>
+		<div>
+			<h2>Tässä näkyy Exercise 3 session data:</h2>
+			<div id="session-data-sessionstorage">Session data goes here!</div>
+		</div>
+		<div>
+		<hr/>	
+			<h2>Exercise 4:</h2>
+			<p>Try to add localstorage features to your project work. This means, that todo-list for 
+			example, would remember the data that you have entered between browser refresh and even 
+			restarts.</p>
+		</div>
+
+		<script>
+			// Exercise 1
+			const reserve = document.getElementById('button');
+			reserve.addEventListener('click', haetaanData);
+		
+			function haetaanData() {
+				const destination = document.getElementById('destination').value;
+				const arrival = document.getElementById('arrival').value;
+		
+				const services = [];
+				if (document.getElementById('CheckboxGroup1_0').checked) services.push('Internet');
+				if (document.getElementById('CheckboxGroup1_1').checked) services.push('Air Conditioning');
+				if (document.getElementById('CheckboxGroup1_2').checked) services.push('Minibar');
+				if (document.getElementById('CheckboxGroup1_3').checked) services.push('Car rent');
+				if (document.getElementById('CheckboxGroup1_4').checked) services.push('Sauna');
+		
+				const travelData = {
+					destination: destination,
+					arrival: arrival,
+					services: services
+				};
+		
+				// Tallennetaan tiedot localStorageen
+				localStorage.setItem('travelData', JSON.stringify(travelData));
+		
+				// Kutsutaan naytaData-funktio, jotta tiedot näkyvät heti
+				naytaData();
+			}
+		
+			// Exercise 2
+			function naytaData() {
+				const savedData = localStorage.getItem('travelData');
+				const sessionDataDiv = document.getElementById('sessiondata');
+		
+				if (savedData) {
+					const travelData = JSON.parse(savedData);
+		
+					// Muodostetaan teksti tallennetusta datasta
+					let sessionContent = `<p><strong>Destination:</strong> ${travelData.destination}</p>`;
+					sessionContent += `<p><strong>Arrival Date:</strong> ${travelData.arrival}</p>`;
+					sessionContent += `<p><strong>Services:</strong> ${travelData.services.join(', ')}</p>`;
+		
+					// Asetetaan sisältö div-elementtiin
+					sessionDataDiv.innerHTML = sessionContent;
+				}
+			}
+
+			// Exercise 3 
+			// Kuuntelija lisätty nappiin
+			function haetaanDataSessionStorage() {
+				const destination = document.getElementById('session-destination').value;
+				const arrival = document.getElementById('session-arrival').value;
+		
+				const services = [];
+				if (document.getElementById('session-CheckboxGroup1_0').checked) services.push('Internet');
+				if (document.getElementById('session-CheckboxGroup1_1').checked) services.push('Air Conditioning');
+				if (document.getElementById('session-CheckboxGroup1_2').checked) services.push('Minibar');
+				if (document.getElementById('session-CheckboxGroup1_3').checked) services.push('Car rent');
+				if (document.getElementById('session-CheckboxGroup1_4').checked) services.push('Sauna');
+		
+				const sessionTravelData = {
+					destination: destination,
+					arrival: arrival,
+					services: services
+				};
+		
+				// Tallennetaan tiedot sessionStorageen
+				sessionStorage.setItem('sessionTravelData', JSON.stringify(sessionTravelData));
+		
+				// Näytetään tallennetut tiedot
+				naytaSessionDataSessionStorage();
+			}
+
+			function naytaSessionDataSessionStorage() {
+				const savedData = sessionStorage.getItem('sessionTravelData');
+				const sessionDataDiv = document.getElementById('session-data-sessionstorage');
+		
+				if (savedData) {
+					const travelData = JSON.parse(savedData);
+		
+					// Muodostetaan teksti tallennetusta datasta
+					let sessionContent = `<p><strong>Destination:</strong> ${travelData.destination}</p>`;
+					sessionContent += `<p><strong>Arrival Date:</strong> ${travelData.arrival}</p>`;
+					sessionContent += `<p><strong>Services:</strong> ${travelData.services.join(', ')}</p>`;
+		
+					// Asetetaan sisältö div-elementtiin
+					sessionDataDiv.innerHTML = sessionContent;
+				}
+			}
+
+			// Katsoo onko session dataa kun sivu uudelleenladataan
+			window.onload = function() {
+				naytaSessionDataSessionStorage();
+			};
+		</script>
+	</body>
+</html>
+
+
